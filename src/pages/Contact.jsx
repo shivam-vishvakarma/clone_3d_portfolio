@@ -12,14 +12,6 @@ export default function Contact() {
   const [currentAnimation, setCurrentAnimation] = useState("idle");
   const [alert, showAlert, hideAlert] = useAlert();
 
-  const encode = (data) => {
-    return Object.keys(data)
-      .map(
-        (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
-      )
-      .join("&");
-  };
-
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -31,16 +23,26 @@ export default function Contact() {
     e.preventDefault();
     setIsLoading(true);
     setCurrentAnimation("hit");
+    const myForm = e.target;
+    const formData = new FormData(myForm);
+    formData.append("form-name", formRef.current.getAttribute("name"));
+    formData.forEach((value, key) => {
+      console.log(key, value);
+    });
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "contact", ...form }),
+      body: new URLSearchParams(formData).toString(),
     })
-      .then(() => {
-        setForm({ name: "", email: "", message: "" });
-        setCurrentAnimation("idle");
-        setIsLoading(false);
-        showAlert({ text: "Message sent successfully!", type: "success" });
+      .then((res) => {
+          setCurrentAnimation("idle");
+          setIsLoading(false);
+          if (res.ok) {
+            setForm({ name: "", email: "", message: "" });
+            showAlert({ text: "Message sent successfully!", type: "success" });
+          } else {
+            showAlert({ text: "Something went wrong!", type: "danger" });
+          }
       })
       .catch((error) => {
         setCurrentAnimation("idle");
@@ -59,6 +61,8 @@ export default function Contact() {
         <form
           className="w-full flex flex-col gap-5 mt-14"
           onSubmit={handleSubmit}
+          ref={formRef}
+          name="contact"
         >
           <label className="text-black-500 font-semibold">Name</label>
           <input
