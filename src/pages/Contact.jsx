@@ -29,7 +29,7 @@ export default function Contact() {
     // formData.forEach((value, key) => {
     //   console.log(key, value);
     // });
-    fetch("/form.html", {
+    fetch("/submit-form", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(formData).toString(),
