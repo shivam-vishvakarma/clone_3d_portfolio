@@ -47,7 +47,8 @@ export default function Contact() {
       .catch((error) => {
         setCurrentAnimation("idle");
         setIsLoading(false);
-        showAlert({ text: "Something went wrong!", type: "danger" });
+        showAlert({ text: "Something went wrong! We'll fix it soon", type: "danger" });
+        console.error(error);
       });
     setTimeout(() => {
       hideAlert();
