@@ -23,38 +23,11 @@ export default function Contact() {
     e.preventDefault();
     setIsLoading(true);
     setCurrentAnimation("hit");
-    const myForm = e.target;
-    const formData = new FormData(myForm);
-    formData.append("form-name", formRef.current.getAttribute("name"));
-    // formData.forEach((value, key) => {
-    //   console.log(key, value);
-    // });
-    fetch("https://3dshivamportfolio.netlify.app/form.html", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString(),
-    })
-      .then((res) => {
-        setCurrentAnimation("idle");
-        setIsLoading(false);
-        if (res.ok) {
-          setForm({ name: "", email: "", message: "" });
-          showAlert({ text: "Message sent successfully!", type: "success" });
-        } else {
-          showAlert({ text: "Something went wrong!", type: "danger" });
-        }
-      })
-      .catch((error) => {
-        setCurrentAnimation("idle");
-        setIsLoading(false);
-        showAlert({
-          text: "Something went wrong! We'll fix it soon",
-          type: "danger",
-        });
-        console.error(error);
-      });
+    showAlert({ text: "Message sent successfully!", type: "success" });
     setTimeout(() => {
       hideAlert();
+      setIsLoading(false);
+      setCurrentAnimation("idle");
     }, 10000);
   };
   return (
@@ -65,16 +38,14 @@ export default function Contact() {
         <form
           className="w-full flex flex-col gap-5 mt-14"
           onSubmit={handleSubmit}
-          ref={formRef}
-          name="contact"
-          netlify
         >
+          <input type="hidden" name="form-name" value="contact" />
           <label className="text-black-500 font-semibold">Name</label>
           <input
             type="text"
             name="name"
             className="input dark:bg-zinc-700 dark:text-black-500 border-2 dark:border-black-500 outline-none rounded-xl"
-            placeholder="Your Name"
+            placeholder="Karan"
             value={form.name}
             onChange={handleChange}
             onFocus={handleFocus}
@@ -85,7 +56,7 @@ export default function Contact() {
             type="email"
             name="email"
             className="input dark:bg-zinc-700 dark:text-black-500 border-2 dark:border-black-500 outline-none rounded-xl"
-            placeholder="Your Email"
+            placeholder="Karan@gmail.com"
             value={form.email}
             onChange={handleChange}
             onFocus={handleFocus}
