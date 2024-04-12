@@ -29,25 +29,28 @@ export default function Contact() {
     // formData.forEach((value, key) => {
     //   console.log(key, value);
     // });
-    fetch("/form.html", {
+    fetch("https://3dshivamportfolio.netlify.app/form.html", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(formData).toString(),
     })
       .then((res) => {
-          setCurrentAnimation("idle");
-          setIsLoading(false);
-          if (res.ok) {
-            setForm({ name: "", email: "", message: "" });
-            showAlert({ text: "Message sent successfully!", type: "success" });
-          } else {
-            showAlert({ text: "Something went wrong!", type: "danger" });
-          }
+        setCurrentAnimation("idle");
+        setIsLoading(false);
+        if (res.ok) {
+          setForm({ name: "", email: "", message: "" });
+          showAlert({ text: "Message sent successfully!", type: "success" });
+        } else {
+          showAlert({ text: "Something went wrong!", type: "danger" });
+        }
       })
       .catch((error) => {
         setCurrentAnimation("idle");
         setIsLoading(false);
-        showAlert({ text: "Something went wrong! We'll fix it soon", type: "danger" });
+        showAlert({
+          text: "Something went wrong! We'll fix it soon",
+          type: "danger",
+        });
         console.error(error);
       });
     setTimeout(() => {
@@ -64,8 +67,8 @@ export default function Contact() {
           onSubmit={handleSubmit}
           ref={formRef}
           name="contact"
+          netlify
         >
-            <input type="hidden" name="form-name" value="contact" />
           <label className="text-black-500 font-semibold">Name</label>
           <input
             type="text"
