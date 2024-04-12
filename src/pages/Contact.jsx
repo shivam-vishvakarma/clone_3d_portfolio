@@ -39,6 +39,7 @@ export default function Contact() {
         <form
           className="w-full flex flex-col gap-5 mt-14"
           onSubmit={handleSubmit}
+          ref={formRef}
         >
           <input type="hidden" name="form-name" value="contact" />
           <label className="text-black-500 font-semibold">Name</label>
