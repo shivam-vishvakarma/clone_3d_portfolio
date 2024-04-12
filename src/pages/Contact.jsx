@@ -45,7 +45,7 @@ export default function Contact() {
             type="text"
             name="name"
             className="input dark:bg-zinc-700 dark:text-black-500 border-2 dark:border-black-500 outline-none rounded-xl"
-            placeholder="Karan"
+            placeholder="abc"
             value={form.name}
             onChange={handleChange}
             onFocus={handleFocus}
@@ -56,7 +56,7 @@ export default function Contact() {
             type="email"
             name="email"
             className="input dark:bg-zinc-700 dark:text-black-500 border-2 dark:border-black-500 outline-none rounded-xl"
-            placeholder="Karan@gmail.com"
+            placeholder="abc@abc.com"
             value={form.email}
             onChange={handleChange}
             onFocus={handleFocus}
