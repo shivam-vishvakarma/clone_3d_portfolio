@@ -24,12 +24,12 @@ export default function Contact() {
     setIsLoading(true);
     setCurrentAnimation("hit");
     showAlert({ text: "Message sent successfully!", type: "success" });
-    formRef.current.reset();
+    setForm({ name: "", email: "", message: "" });
     setTimeout(() => {
       hideAlert();
       setIsLoading(false);
       setCurrentAnimation("idle");
-    }, 10000);
+    }, 5000);
   };
   return (
     <section className="relative flex lg:flex-row flex-col max-container">
@@ -40,6 +40,7 @@ export default function Contact() {
           className="w-full flex flex-col gap-5 mt-14"
           onSubmit={handleSubmit}
           ref={formRef}
+          netlify
         >
           <input type="hidden" name="form-name" value="contact" />
           <label className="text-black-500 font-semibold">Name</label>
