@@ -24,6 +24,7 @@ export default function Contact() {
     setIsLoading(true);
     setCurrentAnimation("hit");
     showAlert({ text: "Message sent successfully!", type: "success" });
+    formRef.current.reset();
     setTimeout(() => {
       hideAlert();
       setIsLoading(false);
