@@ -23,12 +23,36 @@ export default function Contact() {
     e.preventDefault();
     setIsLoading(true);
     setCurrentAnimation("hit");
-    showAlert({ text: "Message sent successfully!", type: "success" });
-    setForm({ name: "", email: "", message: "" });
+    const myForm = event.target;
+    const formData = new FormData(myForm);
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        "form-name": "contact",
+        ...Object.fromEntries(formData),
+      }).toString(),
+    })
+      .then((res) => {
+        setCurrentAnimation("idle");
+        setIsLoading(false);
+        if (res.ok) {
+          showAlert({ text: "Message sent successfully!", type: "success" });
+          setForm({ name: "", email: "", message: "" });
+        } else {
+          showAlert({ text: "Something went wrong!", type: "danger" });
+        }
+      })
+      .catch((error) => {
+        showAlert({
+          text: "Something went wrong! Will fix it soon",
+          type: "danger",
+        });
+        setCurrentAnimation("idle");
+        setIsLoading(false);
+      });
     setTimeout(() => {
       hideAlert();
-      setIsLoading(false);
-      setCurrentAnimation("idle");
     }, 5000);
   };
   return (
@@ -39,7 +63,6 @@ export default function Contact() {
         <form
           className="w-full flex flex-col gap-5 mt-14"
           onSubmit={handleSubmit}
-          method="POST"
           ref={formRef}
         >
           <input type="hidden" name="form-name" value="contact" />
