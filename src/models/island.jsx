@@ -46,6 +46,29 @@ export default function Island({
     }
   };
 
+  const handleTouchStart = (e) => {
+    e.preventDefault();
+    setIsRotating(true);
+    lastX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    if (isRotating) {
+      const delta = (e.touches[0].clientX - lastX.current) / viewport.width;
+      islandRef.current.rotation.y += delta * 0.01 * Math.PI;
+      lastX.current = e.touches[0].clientX;
+      rotationSpeed.current = delta * 0.01 * Math.PI;
+    }
+  };
+
+  const handleTouchEnd = (e) => {
+    setIsRotating(false);
+  };
+
+  const handleTouchCancel = (e) => {
+    setIsRotating(false);
+  };
+
   const handleKeyDown = (e) => {
     if (e.code === "ArrowLeft") {
       if (!isRotating) setIsRotating(true);
@@ -113,16 +136,35 @@ export default function Island({
     canvas.addEventListener("pointerdown", handlePointerDown);
     canvas.addEventListener("pointerup", handlePointerUp);
     canvas.addEventListener("pointermove", handlePointerMove);
+    canvas.addEventListener("touchstart", handleTouchStart);
+    canvas.addEventListener("touchmove", handleTouchMove);
+    canvas.addEventListener("touchend", handleTouchEnd);
+    canvas.addEventListener("touchcancel", handleTouchCancel);
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("keyup", handleKeyUp);
     return () => {
       canvas.removeEventListener("pointerdown", handlePointerDown);
       canvas.removeEventListener("pointerup", handlePointerUp);
       canvas.removeEventListener("pointermove", handlePointerMove);
+      canvas.removeEventListener("touchstart", handleTouchStart);
+      canvas.removeEventListener("touchmove", handleTouchMove);
+      canvas.removeEventListener("touchend", handleTouchEnd);
+      canvas.removeEventListener("touchcancel", handleTouchCancel);
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("keyup", handleKeyUp);
     };
-  }, [gl, handlePointerDown, handlePointerUp, handlePointerMove]);
+  }, [
+    gl,
+    handlePointerDown,
+    handlePointerUp,
+    handlePointerMove,
+    handleKeyDown,
+    handleKeyUp,
+    handleTouchStart,
+    handleTouchMove,
+    handleTouchEnd,
+    handleTouchCancel,
+  ]);
 
   return (
     <a.group ref={islandRef} {...props}>

@@ -47,7 +47,7 @@ body:has(.card[data-color="green"]:hover) {
   }
 
   .btn {
-    @apply text-white bg-gradient-to-r from-[#00c6ff] to-[#0072ff] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center;
+    @apply text-white dark:text-black-500 bg-gradient-to-r from-[#00c6ff] to-[#0072ff] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center;
   }
 
   .header {
@@ -67,7 +67,7 @@ body:has(.card[data-color="green"]:hover) {
   }
 
   .neo-btn {
-    @apply py-3 px-6 rounded-lg text-blue-500 text-center font-semibold sm:w-1/2 w-[90%] -bottom-5 absolute mx-auto right-0 left-0 flex justify-center items-center gap-3;
+    @apply py-3 px-6 rounded-lg text-blue-500 dark:bg-gray-700 text-center font-semibold sm:w-1/2 w-[90%] -bottom-5 absolute mx-auto right-0 left-0 flex justify-center items-center gap-3;
   }
 
   .cta {
@@ -111,7 +111,8 @@ body:has(.card[data-color="green"]:hover) {
   transform-origin: bottom right;
   transform: rotateZ(15deg);
   will-change: transform;
-  box-shadow: 16px 0 40px #e4e4e4;
+  /* box-shadow: 16px 0 40px #e4e4e4; */
+  @apply shadow-[16px_0_40px_#e4e4e4] dark:shadow-[16px_0_40px_rgb(29,34,53)];
 }
 
 .block-container .btn-back-red {
@@ -180,4 +181,21 @@ body:has(.card[data-color="green"]:hover) {
   border: #fff;
   box-shadow: 0.6vmin 0.6vmin #fff, 1vmin 1vmin #d2e4ff, 1vmin 1vmin #d2e4ff,
     0.65vmin 1vmin #d2e4ff, 1vmin 0.65vmin #d2e4ff;
+}
+
+/*custom scrollbar*/
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #373737;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1f1f1f;
 }

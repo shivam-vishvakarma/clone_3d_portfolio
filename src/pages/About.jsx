@@ -15,7 +15,7 @@ export default function About() {
           Shivam
         </span>
       </h1>
-      <div className="mt-5 flex flex-col gap-3 text-slate-500">
+      <div className="mt-5 flex flex-col gap-3 text-slate-500 dark:text-black-500 text-xl">
         <p>
           As a dedicated and ambitous BCA student with a passion for web
           development, programming and computer science. I am seeking
@@ -41,7 +41,7 @@ export default function About() {
           ))}
         </div>
       </div>
-      <div className="py-16">
+      {/* <div className="py-16">
         <h3 className="subhead-text">Work Experience</h3>
         <div className="mt-5 flex flex-col gap-3 text-slate-500">
           <p>
@@ -95,8 +95,8 @@ export default function About() {
             ))}
           </VerticalTimeline>
         </div>
-      </div>
-      <hr className="border-slate-200" />
+      </div> */}
+      <hr className="border-slate-200 dark:border-black-500" />
       <CTA />
     </section>
   );

@@ -43,7 +43,7 @@ export default function Contact() {
           <input
             type="text"
             name="name"
-            className="input"
+            className="input dark:bg-zinc-700 dark:text-black-500 border-2 dark:border-black-500 outline-none rounded-xl"
             placeholder="Karan"
             value={form.name}
             onChange={handleChange}
@@ -54,7 +54,7 @@ export default function Contact() {
           <input
             type="email"
             name="email"
-            className="input"
+            className="input dark:bg-zinc-700 dark:text-black-500 border-2 dark:border-black-500 outline-none rounded-xl"
             placeholder="Karan@gmail.com"
             value={form.email}
             onChange={handleChange}
@@ -65,7 +65,7 @@ export default function Contact() {
           <textarea
             name="message"
             rows={4}
-            className="textarea"
+            className="textarea dark:bg-zinc-700 dark:text-black-500 border-2 dark:border-black-500 outline-none rounded-xl"
             placeholder="Let me know how can i help you!"
             required
             value={form.message}

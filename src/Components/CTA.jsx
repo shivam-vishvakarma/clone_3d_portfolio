@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function CTA() {
   return (
     <section className="cta">
-      <p className="cta-text">
+      <p className="cta-text dark:text-black-500">
         Have a project in mind? <br className="sm:block hidden" /> Let's build
         something together!
       </p>
