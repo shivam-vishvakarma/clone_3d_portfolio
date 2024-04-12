@@ -65,12 +65,13 @@ export default function Contact() {
           ref={formRef}
           name="contact"
         >
+            <input type="hidden" name="form-name" value="contact" />
           <label className="text-black-500 font-semibold">Name</label>
           <input
             type="text"
             name="name"
             className="input dark:bg-zinc-700 dark:text-black-500 border-2 dark:border-black-500 outline-none rounded-xl"
-            placeholder="Karan"
+            placeholder="Your Name"
             value={form.name}
             onChange={handleChange}
             onFocus={handleFocus}
@@ -81,7 +82,7 @@ export default function Contact() {
             type="email"
             name="email"
             className="input dark:bg-zinc-700 dark:text-black-500 border-2 dark:border-black-500 outline-none rounded-xl"
-            placeholder="Karan@gmail.com"
+            placeholder="Your Email"
             value={form.email}
             onChange={handleChange}
             onFocus={handleFocus}
