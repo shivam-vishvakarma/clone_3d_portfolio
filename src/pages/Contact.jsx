@@ -6,28 +6,36 @@ import useAlert from "../Hooks/useAlert";
 import Alert from "../Components/Alert";
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const formRef = useRef();
   const [isLoading, setIsLoading] = useState();
   const [currentAnimation, setCurrentAnimation] = useState("idle");
   const [alert, showAlert, hideAlert] = useAlert();
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
   const handleFocus = (e) => setCurrentAnimation("walk");
-  const handleBlur = () => setCurrentAnimation("idle");
+  const handleBlur = (e) => setCurrentAnimation("idle");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
     setCurrentAnimation("hit");
-    showAlert({ text: "Message sent successfully!", type: "success" });
+    const myForm = e.target;
+    const formData = new FormData(myForm);
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString(),
+    }).then(() =>{
+        myForm.reset();
+        setIsLoading(false);
+        setCurrentAnimation("idle");
+        showAlert({ text: "Message sent successfully!", type: "success" });
+    }).catch((error) => {
+        setIsLoading(false);
+        setCurrentAnimation("idle");
+        showAlert({ text: "Something went wrong!", type: "danger" });
+        console.error(error);
+    });
     setTimeout(() => {
       hideAlert();
-      setIsLoading(false);
-      setCurrentAnimation("idle");
     }, 5000);
   };
   return (
@@ -43,10 +51,8 @@ export default function Contact() {
           <input
             type="text"
             name="name"
-            className="input dark:bg-zinc-700 dark:text-black-500 border-2 dark:border-black-500 outline-none rounded-xl"
+            className="input dark:bg-zinc-700 dark:text-white border-2 dark:border-black-500 outline-none rounded-xl"
             placeholder="Karan"
-            value={form.name}
-            onChange={handleChange}
             onFocus={handleFocus}
             onBlur={handleBlur}
           />
@@ -54,10 +60,8 @@ export default function Contact() {
           <input
             type="email"
             name="email"
-            className="input dark:bg-zinc-700 dark:text-black-500 border-2 dark:border-black-500 outline-none rounded-xl"
+            className="input dark:bg-zinc-700 dark:text-white border-2 dark:border-black-500 outline-none rounded-xl"
             placeholder="Karan@gmail.com"
-            value={form.email}
-            onChange={handleChange}
             onFocus={handleFocus}
             onBlur={handleBlur}
           />
@@ -65,11 +69,9 @@ export default function Contact() {
           <textarea
             name="message"
             rows={4}
-            className="textarea dark:bg-zinc-700 dark:text-black-500 border-2 dark:border-black-500 outline-none rounded-xl"
+            className="textarea dark:bg-zinc-700 dark:text-white border-2 dark:border-black-500 outline-none rounded-xl"
             placeholder="Let me know how can i help you!"
             required
-            value={form.message}
-            onChange={handleChange}
             onFocus={handleFocus}
             onBlur={handleBlur}
           ></textarea>
