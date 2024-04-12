@@ -44,6 +44,7 @@ export default function Contact() {
       <div className="flex-1 min-w-[50%] flex flex-col">
         <h1 className="head-text">Contact Me</h1>
         <form
+            name="contact"
           className="w-full flex flex-col gap-5 mt-14"
           onSubmit={handleSubmit}
         >
