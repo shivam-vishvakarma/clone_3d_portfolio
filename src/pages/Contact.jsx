@@ -39,8 +39,8 @@ export default function Contact() {
         <form
           className="w-full flex flex-col gap-5 mt-14"
           onSubmit={handleSubmit}
+          method="POST"
           ref={formRef}
-          netlify
         >
           <input type="hidden" name="form-name" value="contact" />
           <label className="text-black-500 font-semibold">Name</label>
