@@ -28,6 +28,13 @@ import soundon from './soundon.png'
 import soundoff from './soundoff.png'
 import sunicon from './sunicon.svg'
 import moonicon from './moonicon.svg'
+import logo from './logo.png'
+import hackerrank from './hackerrank.svg'
+import django from './django.svg'
+import python from './python.svg'
+import mysql from './mysql.svg'
+import drf from './Django REST.svg'
+import gsap from './gsap.svg'
 
 export {
     css,
@@ -59,5 +66,12 @@ export {
     soundon,
     soundoff,
     sunicon,
-    moonicon
+    moonicon,
+    logo,
+    hackerrank,
+    django,
+    python,
+    mysql,
+    drf,
+    gsap
 }

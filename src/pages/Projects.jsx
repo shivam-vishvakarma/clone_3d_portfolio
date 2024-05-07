@@ -5,7 +5,7 @@ import CTA from "../Components/CTA";
 
 export default function Projects() {
   return (
-    <section className="max-container">
+    <section className="max-container relative">
       <h1 className="head-text">
         My{"  "}
         <span className="blue-gradient_text font-semibold drop-shadow">
@@ -32,7 +32,9 @@ export default function Projects() {
               <h4 className="text-2xl font-poppins font-semibold dark:text-black-500">
                 {project.name}
               </h4>
-              <p className="mt-2 text-slate-500 dark:text-black-500">{project.description}</p>
+              <p className="mt-2 text-slate-500 dark:text-black-500">
+                {project.description}
+              </p>
               {project.gitLink && (
                 <div className="mt-5 flex items-center gap-2 font-poppins">
                   <Link
@@ -71,6 +73,9 @@ export default function Projects() {
           </div>
         ))}
       </div>
+      <Link to={"https://projects.shivamvishwakarma.me"} target="_blank" className="btn absolute right-0 left-0 mx-10 -translate-y-[110%]" aria-label="View More Projects">
+        View All Projects
+      </Link>
       <hr className="border-slate-200 dark:border-black-500" />
       <CTA />
     </section>
