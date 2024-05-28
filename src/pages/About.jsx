@@ -17,11 +17,11 @@ export default function About() {
       </h1>
       <div className="mt-5 flex flex-col gap-3 text-slate-500 dark:text-black-500 text-xl">
         <p>
-          As a dedicated and ambitous BCA student with a passion for web
-          development, programming and computer science. I am seeking
-          opportunities to contribute my skills and learned from experienced
-          profesionals. My goal is to become the world's best full stack web
-          developer
+          As a dedicated and ambitious BCA student with a passion for web
+          development, programming, and computer science, I am seeking
+          opportunities to contribute my skills and learn from experienced
+          professionals. My goal is to become the world's best full-stack web
+          developer.
         </p>
       </div>
       <div className="py-10 flex flex-col">
