@@ -9,6 +9,7 @@ import DarkModeBTN from "./Components/DarkModeBTN";
 import { useEffect } from "react";
 import { useDarkMode } from "./context/contexts";
 import Error from "./pages/Error";
+import Cv from "./pages/Cv";
 
 function App() {
     const {isDarkMode, setIsDarkMode} = useDarkMode();
@@ -41,6 +42,7 @@ function App() {
           <Route path="about" element={<About />} />
           <Route path="projects" element={<Projects />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="cv" element={<Cv/>} />
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>
